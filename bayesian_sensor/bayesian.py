@@ -54,8 +54,10 @@ class Bayesian:
             elif obs['platform'] == 'numeric_state':
                 res += '    - platform: numeric_state\n'
                 res += f'      entity_id: {obs["entity_id"]}\n'
-                res += f'      min: {obs["value"]["min"]}\n'
-                res += f'      max: {obs["value"]["max"]}\n'
+                if "above" in obs["value"]:
+                    res += f'      above: {obs["value"]["above"]}\n'
+                if "below" in obs["value"]:
+                    res += f'      below: {obs["value"]["below"]}\n'
             elif obs['platform'] == 'template':
                 res += '    - platform: value_template\n'
                 res += f'      value_template: >-\n        {obs["value"]}\n'
